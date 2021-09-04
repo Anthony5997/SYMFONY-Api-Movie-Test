@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+    {{dump(data)}}
+<div class="container">
+        <div class="row">
+        {% for movies in data.results %}
+        {% if movies.poster_path != null %}
+                <div class="col-3">
+                    <div class="col">
+                    </div>
+                	<div class="card shadow-lg h-100 m-2">
+                    <div class="col">
+							<div class="card-body">
+                              <img src="https://image.tmdb.org/t/p/w185{{movies.poster_path}}" /> 
+								<h5 class="card-title">{{movies.title}}</h5>
+								<p class="card-text">Film : <span class="badge bg-secondary">{{movies.id}}</span></p>
+								<p class="card-text">Date de sortir : <span class="badge bg-secondary">{{movies.release_date}}</span></p>
+								<p class="card-text">Note : <span class="badge bg-secondary">{{movies.vote_average}}</span></p>
+								<p class="card-text">Nombres de votes : <span class="badge bg-secondary">{{movies.vote_count}}</span></p>
+                                <button class="btn btn-secondary"  >Voir détail</button>
+								{# <a href="{{ path('detail', {'id': movies.id }) }}" class="btn btn-secondary" role="button" aria-pressed="true">Plus de chiffres</a> #}
+							</div>
+                        </div>
+                    </div>
+
+                            <p></p>
+                </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
